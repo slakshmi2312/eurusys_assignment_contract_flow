@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg bg-white border-bottom px-4">
+  <div class="container-fluid">
+
+    <a class="navbar-brand d-flex align-items-center gap-2">
+      <div class="logo-icon">
+        <i class="bi bi-file-earmark-text"></i>
+      </div>
+      <div>
+        <div class="fw-semibold">ContractFlow</div>
+        <small class="text-muted">Contract Management</small>
+      </div>
+    </a>
+
+    <ul class="navbar-nav ms-auto gap-3">
+      <li class="nav-item">
+        <a class="nav-link" (click)="goToDashboard()">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="goToBlueprints()">Blueprints</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="goToContracts()">Contracts</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>

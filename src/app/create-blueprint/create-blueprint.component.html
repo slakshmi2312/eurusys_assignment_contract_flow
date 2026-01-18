@@ -1,0 +1,120 @@
+
+
+<div class="container-fluid px-5 py-4" style="max-width: 900px;">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-semibold mb-1">Create Blueprint</h2>
+      <p class="text-muted mb-0">Design a reusable contract template</p>
+    </div>
+
+    <button class="btn btn-outline-secondary" routerLink="/blueprints">
+      Cancel
+    </button>
+  </div>
+
+  <!-- Blueprint Details -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="fw-semibold">Blueprint Details</h5>
+      <p class="text-muted mb-3">
+        Basic information about this contract template
+      </p>
+
+      <div class="mb-3">
+        <label class="form-label fw-medium">
+          Blueprint Name <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="blueprintName"
+          placeholder="e.g., Employment Contract, NDA"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-medium">Description</label>
+        <textarea
+          class="form-control"
+          rows="3"
+          [(ngModel)]="description"
+          placeholder="Describe the purpose of this blueprint..."
+        ></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fields -->
+  <div class="card mb-4">
+    <div class="card-body">
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h5 class="fw-semibold mb-0">Fields</h5>
+          <p class="text-muted mb-0">
+            Configure the fields for this contract template
+          </p>
+        </div>
+
+        <button class="btn btn-outline-primary" (click)="addField()">
+          <i class="bi bi-plus"></i> Add Field
+        </button>
+      </div>
+
+      <!-- Field List -->
+      <div *ngFor="let field of fields; let i = index" class="border rounded p-3 mb-3">
+
+        <div class="d-flex justify-content-between mb-2">
+          <strong>Field {{ i + 1 }}</strong>
+          <i
+            class="bi bi-trash text-danger"
+            style="cursor:pointer"
+            (click)="removeField(i)"
+          ></i>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <label class="form-label">Field Type</label>
+            <select class="form-select" [(ngModel)]="field.type">
+              <option>Text</option>
+              <option>Date</option>
+              <option>Signature</option>
+              <option>Checkbox</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Field Label</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="field.label"
+              placeholder="e.g., Employee Name"
+            />
+          </div>
+        </div>
+
+      </div>
+
+      <div *ngIf="fields.length === 0"
+           class="border border-dashed rounded p-4 text-center text-muted">
+        No fields added yet
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="d-flex justify-content-end gap-2">
+    <button class="btn btn-outline-secondary" routerLink="/blueprints">
+      Cancel
+    </button>
+    <button class="btn btn-primary" (click)="createBlueprint()">
+      Create Blueprint
+    </button>
+  </div>
+
+</div>

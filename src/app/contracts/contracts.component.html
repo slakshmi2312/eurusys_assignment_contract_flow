@@ -1,0 +1,77 @@
+<div class="container-fluid px-5 py-4">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="page-title mb-1">Contracts</h2>
+      <p class="page-subtitle mb-0">
+        Manage all your contracts in one place
+      </p>
+    </div>
+
+    <button class="btn btn-primary" (click)="openCreateContract()">
+      <i class="bi bi-plus"></i> New Contract
+    </button>
+  </div>
+
+  <!-- Status Tabs -->
+  <div class="status-tabs mb-3">
+    <span class="tab" [class.active]="activeTab === 'all'" (click)="setTab('all')">
+      All ({{ totalCount }})
+    </span>
+    <span class="tab" [class.active]="activeTab === 'active'" (click)="setTab('active')">
+      Active ({{ activeCount }})
+    </span>
+    <span class="tab" [class.active]="activeTab === 'pending'" (click)="setTab('pending')">
+      Pending ({{ pendingCount }})
+    </span>
+    <span class="tab" [class.active]="activeTab === 'signed'" (click)="setTab('signed')">
+      Signed ({{ signedCount }})
+    </span>
+  </div>
+
+  <!-- Contracts Table -->
+  <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Contract Name</th>
+          <th>Blueprint</th>
+          <th>Status</th>
+          <th>Created Date</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let contract of filteredContracts">
+          <td>{{ contract.name }}</td>
+          <td>{{ contract.blueprintName }}</td>
+          <td class="text-capitalize">
+            <span
+              class="badge"
+              [class.bg-secondary]="contract.status === 'created'"
+              [class.bg-primary]="contract.status === 'approved' || contract.status === 'sent'"
+              [class.bg-success]="contract.status === 'signed' || contract.status === 'locked'"
+            >
+              {{ contract.status }}
+            </span>
+          </td>
+          <td>{{ contract.createdAt }}</td>
+          <td class="text-end">
+            <button class="btn btn-link p-0" (click)="viewContract(contract.id)">
+              View
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngIf="filteredContracts.length === 0">
+          <td colspan="5" class="text-center text-muted py-5">
+            No contracts found
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,0 +1,12 @@
+.card {
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.border-dashed {
+  border-style: dashed !important;
+}
+
+.form-label {
+  font-size: 14px;
+}

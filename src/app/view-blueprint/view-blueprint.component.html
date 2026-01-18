@@ -1,0 +1,118 @@
+
+
+<div class="container-fluid px-5 py-4" style="max-width: 900px;">
+
+  <!-- Back -->
+  <a (click)="goBack()" class="text-muted text-decoration-none mb-3 d-inline-block">
+    ← Back to Blueprints
+  </a>
+
+  <!-- Title -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-semibold">{{ blueprint?.name }}</h2>
+      <p class="text-muted">{{ blueprint?.description }}</p>
+    </div>
+
+    <button class="btn btn-primary" (click)="useTemplate()">
+      <i class="bi bi-file-earmark"></i> Use Template
+    </button>
+  </div>
+
+  <!-- Blueprint Information -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h6 class="fw-semibold">Blueprint Information</h6>
+      <p class="text-muted">Template details and metadata</p>
+
+      <div class="row">
+        <div class="col-md-6">
+          <strong>Blueprint Name</strong>
+          <div>{{ blueprint?.name }}</div>
+        </div>
+
+        <div class="col-md-3">
+          <strong>Total Fields</strong>
+          <div>{{ blueprint?.fields?.length }}</div>
+        </div>
+
+        <div class="col-md-3">
+          <strong>Created Date</strong>
+          <div>{{ blueprint?.createdAt }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Template Fields -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h6 class="fw-semibold">Template Fields</h6>
+      <p class="text-muted">{{ blueprint?.fields?.length }} field configured</p>
+
+      <div
+        class="border rounded p-3 mb-2"
+        *ngFor="let field of blueprint?.fields; let i = index"
+      >
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <strong>Field {{ i + 1 }}</strong>
+            <span class="badge bg-dark ms-2">{{ field.type }}</span>
+          </div>
+          <span class="badge bg-secondary">Required</span>
+        </div>
+
+        <div class="mt-2 text-muted">
+          {{ field.label }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Field Types -->
+  <div class="card">
+    <div class="card-body">
+      <h6 class="fw-semibold">Field Types</h6>
+      <p class="text-muted">Understanding the different field types</p>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="border rounded p-3">
+            <span class="badge bg-primary">Text</span>
+            <p class="mt-2 text-muted mb-0">
+              Single-line text input for names, titles, or short descriptions
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="border rounded p-3">
+            <span class="badge bg-primary">Date</span>
+            <p class="mt-2 text-muted mb-0">
+              Date picker for selecting specific dates like start dates
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="border rounded p-3">
+            <span class="badge bg-primary">Signature</span>
+            <p class="mt-2 text-muted mb-0">
+              Text field for signature names (simulated signature)
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="border rounded p-3">
+            <span class="badge bg-primary">Checkbox</span>
+            <p class="mt-2 text-muted mb-0">
+              Boolean field for agreements or acknowledgements
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

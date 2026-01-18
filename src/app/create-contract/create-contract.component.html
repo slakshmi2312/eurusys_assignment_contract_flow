@@ -1,0 +1,85 @@
+<div class="container-fluid px-5 py-4" style="max-width: 900px;">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-semibold mb-1">Create Contract</h2>
+      <p class="text-muted mb-0">
+        Generate a new contract from a blueprint
+      </p>
+    </div>
+
+    <button class="btn btn-outline-secondary" routerLink="/contracts">
+      Cancel
+    </button>
+  </div>
+
+  <!-- Form Card -->
+  <div class="card mb-4">
+    <div class="card-body">
+
+      <!-- Blueprint Selection -->
+      <div class="mb-3">
+        <label class="form-label fw-medium">
+          Blueprint Template <span class="text-danger">*</span>
+        </label>
+
+        <select
+          class="form-select"
+          [(ngModel)]="selectedBlueprintId"
+          [ngModelOptions]="{ standalone: true }"
+        >
+          <option value="">Select a blueprint</option>
+
+          <option
+            *ngFor="let blueprint of blueprints"
+            [value]="blueprint.id"
+          >
+            {{ blueprint.name }}
+          </option>
+        </select>
+
+        <small
+          class="text-muted"
+          *ngIf="blueprints.length === 0"
+        >
+          You need to create a blueprint first.
+          <a routerLink="/create-blueprint">Create one now</a>
+        </small>
+      </div>
+
+      <!-- Contract Name -->
+      <div class="mb-3">
+        <label class="form-label fw-medium">
+          Contract Name <span class="text-danger">*</span>
+        </label>
+
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="contractName"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="e.g., John Doe Employment Contract"
+        />
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer Actions -->
+  <div class="d-flex justify-content-end gap-2">
+    <button class="btn btn-outline-secondary" routerLink="/contracts">
+      Cancel
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="createContract()"
+    >
+      Create Contract
+    </button>
+  </div>
+
+</div>
+
