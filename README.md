@@ -1,27 +1,105 @@
-# EurusysAssignment
+# Contract Flow – Frontend Contract Management Platform
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
+## Overview
+Contract Flow is a frontend-only Contract Management Platform developed as part of the Eurusys Frontend Assignment.  
+The application demonstrates product thinking, UI design, and state handling without using any backend.
 
-## Development server
+All data is stored locally using browser `localStorage`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+##  Core Design Decisions
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 1. Frontend-only Application
+- No backend was used
+- All data is stored in `localStorage`
+- Simplifies setup and aligns with assignment scope
 
-## Build
+### 2. Centralized Storage Service
+A centralized `StorageService` manages:
+- Blueprints
+- Contracts
+- Contract status updates  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+This ensures consistency across:
+- Dashboard
+- Contracts page
+- Contract view page
 
-## Running unit tests
+### 3. Contract Lifecycle Management
+Contracts move through fixed lifecycle stages:
+created → approved → sent → signed → locked
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Lifecycle updates are reflected across:
+- Dashboard statistics
+- Contracts list
+- Contract detail view
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+##  Features Implemented
 
-## Further help
+### Blueprints
+- Create blueprint with name, description, and fields
+- View blueprint cards
+- Reuse blueprints while creating contracts
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+###  Contracts
+- Create contract from a blueprint
+- View all contracts in table/card format
+- Filter contracts by status:
+  - All
+  - Active
+  - Pending
+  - Signed
+- View contract details
+- Update contract lifecycle (Approve / Revoke)
+
+###  Dashboard
+- Total contracts count
+- Active contracts count
+- Pending signature count
+- Signed & locked count
+- Recent contract activity section
+
+---
+
+##  Assumptions
+- Single-user system (no authentication)
+- Data persists per browser using `localStorage`
+- Status transitions follow a fixed lifecycle
+- UI actions directly update stored data
+
+---
+
+##  Limitations
+- No backend or API integration
+- No role-based access control
+- No real digital signature (simulated)
+- Data clears if browser storage is manually cleared
+- No unit tests included
+
+---
+
+##  Possible Enhancements
+- Backend integration (REST API)
+- Authentication & authorization
+- Real digital signature support
+- Search and pagination
+- State management using NgRx
+
+---
+
+## Tech Stack
+- Angular
+- TypeScript
+- HTML
+- CSS
+
+---
+
+##  How to Run the Project
+```bash
+npm install
+ng serve
+
